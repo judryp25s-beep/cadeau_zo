@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>❤️Zo❤️</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 30px;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px;
+    }
+    .gallery img {
+      height: 200px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease; /* transition fluide */
+      cursor: pointer; /* indique clic/interaction */
+    }
+    .gallery img:hover {
+      transform: scale(1.2); /* zoom 20% au survol */
+      z-index: 10;            /* au-dessus des autres */
+      box-shadow: 0 8px 15px rgba(0,0,0,0.3); /* effet plus marqué */
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>😸 <br>Un cadeau de vacance mimi <br> 😸 pour une fille tellement mimi 😻<br>Pour Zo</h1>
+  <div class="gallery" id="gallery"></div>
+  <button onclick="loadCats()">Plus de mimis 😻</button>
+
+  <script>
+    const API_URL = 'https://api.thecatapi.com/v1/images/search?limit=10';
+    const API_KEY = 'live_cT6WzB8Gac0aP11CWOiGH3iSl9BshB8s9bCr9Sj0MQEGcl1txbc1ckjTqlUum0M5';
+
+    async function loadCats() {
+      const res = await fetch(API_URL, {
+        headers: {
+          'x-api-key': API_KEY
+        }
+      });
+      const cats = await res.json();
+      const gallery = document.getElementById('gallery');
+
+      cats.forEach(cat => {
+        const img = document.createElement('img');
+        img.src = cat.url;
+        img.style.cursor = 'pointer'; // pour indiquer que c’est cliquable
+        img.onclick = () => {
+          window.open(cat.url, '_blank');
+        };
+        gallery.appendChild(img);
+      });
+    }
+    // Charger au démarrage
+    loadCats();
+  </script>
+</body>
+</html>
