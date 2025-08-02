@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Pour Zo❤️</title>
+  <title>Des toutous pour Zo❤️</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -40,13 +40,13 @@
   </style>
 </head>
 <body>
-  <h1>🐶 <br>Un cadeau mimi <br> 🐾 pour une fille tellement mimi 🐕</h1>
+  <h1>🐶 <br>Un cadeau trongon <br> 🐾 pour une fille tellement mignone 🐕<br>ZFMA</h1>
   <div class="gallery" id="gallery"></div>
   <button onclick="loaddogs()">Plus de chiots 🐕</button>
 
   <script>
     async function loaddogs() {
-      const res = await fetch('/dogs');
+      const res = await fetch('/dogs/images');
       const dogs = await res.json();
       const gallery = document.getElementById('gallery');
 
