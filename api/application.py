@@ -13,13 +13,13 @@ app = Flask(__name__, template_folder='../templates')
 def index():
     return render_template('main.html')
 
-@app.route('/dogs_images')
+@app.route('/dogs/images')
 def get_dogs():
     headers = {"x-api-key": API_KEY_DOG}
     response = requests.get(API_URL_DOG, headers=headers)
     return jsonify(response.json())
 
-@app.route('/cats_images')
+@app.route('/cats/images')
 def get_cats():
     headers = {"x-api-key": API_KEY_CAT}
     response = requests.get(API_URL_CAT, headers=headers)
