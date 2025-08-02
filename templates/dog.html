@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pour Zo❤️</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 30px;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px;
+    }
+    .gallery img {
+      height: 200px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease; /* transition fluide */
+      cursor: pointer; /* indique clic/interaction */
+    }
+    .gallery img:hover {
+      transform: scale(1.2); /* zoom 20% au survol */
+      z-index: 10;            /* au-dessus des autres */
+      box-shadow: 0 8px 15px rgba(0,0,0,0.3); /* effet plus marqué */
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>🐶 <br>Un cadeau mimi <br> 🐾 pour une fille tellement mimi 🐕</h1>
+  <div class="gallery" id="gallery"></div>
+  <button onclick="loaddogs()">Plus de mimis 🐕</button>
+
+  <script>
+    const API_URL = 'https://api.thedogapi.com/v1/images/search?limit=10';
+    const API_KEY = 'live_agmM8DP6IKVYH4FyesiEY8vE7ksZVPAtubtFTecDem2iqDMvUo7rTBiSa1at91bB';
+
+    async function loaddogs() {
+      const res = await fetch(API_URL, {
+        headers: {
+          'x-api-key': API_KEY
+        }
+      });
+      const dogs = await res.json();
+      const gallery = document.getElementById('gallery');
+
+      dogs.forEach(dog => {
+        const img = document.createElement('img');
+        img.src = dog.url;
+        img.style.cursor = 'pointer'; // pour indiquer que c’est cliquable
+        img.onclick = () => {
+          window.open(dog.url, '_blank');
+        };
+        gallery.appendChild(img);
+      });
+    }
+    // Charger au démarrage
+    loaddogs();
+  </script>
+</body>
+</html>
